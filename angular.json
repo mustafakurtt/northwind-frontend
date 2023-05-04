@@ -26,12 +26,9 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/@trendyol/baklava/dist/themes/default.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [
-              "node_modules/@trendyol/baklava/dist/baklava.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
