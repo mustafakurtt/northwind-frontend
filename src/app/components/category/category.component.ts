@@ -1,37 +1,48 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
-import { CategoryService } from 'src/services/category.service';
+import { CategoryService } from 'src/app/services/category.service';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  styleUrls: ['./category.component.css'],
 })
-export class CategoryComponent implements OnInit{
-  
-  categories : Category[] = []
+export class CategoryComponent implements OnInit {
+  categories: Category[] | null = [];
   currentCategory: Category;
 
-  constructor(private categoryService : CategoryService){}
-  
+  constructor(private categoryService: CategoryService) {}
+
   ngOnInit(): void {
-    this.getAllCategories()
+    this.getAllCategories();
   }
 
-  getAllCategories(){
-    this.categoryService.getCategories().subscribe(res => this.categories = res.data)
+  getAllCategories() {
+    this.categoryService
+      .getCategories()
+      .subscribe((res) => (this.categories = res.data));
   }
 
-  setCurrentCategory(category: Category){
-    this.currentCategory = category
+  setCurrentCategory(category: Category) {
+    this.currentCategory = category;
     console.log(this.currentCategory);
   }
 
-  getCurrentCategoryClass(category: Category){
+  getCurrentCategoryClass(category: Category) {
     if (this.currentCategory == category) {
       return 'list-group-item active';
-    } 
+    }
     return 'list-group-item';
   }
 
+  getAllCategoryClass() {
+    if (!this.currentCategory) {
+      return 'list-group-item active';
+    }
+    return 'list-group-item';
+  }
+
+  clearCurrentCategory(){
+    this.currentCategory = null
+  }
 }
